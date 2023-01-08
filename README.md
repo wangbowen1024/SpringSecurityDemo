@@ -49,6 +49,23 @@ insert into sys_user_role values(1,1);
 insert into sys_role_menu values(1,2);
 ```
 
+> 如果想自己添加用户，密码字段由于是需要加密的，可以使用测试类 `src/test/java/com/securitydemo/config/SecurityConfigTest.java` 来进行获取：
+>
+> ```java
+> @SpringBootTest
+> public class SecurityConfigTest {
+> 
+>     @Test
+>     public void testBCryptPasswordEncoder() {
+>         final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+>         final String encode = passwordEncoder.encode("123456");
+>         System.out.println(encode);
+>         final boolean matches = passwordEncoder.matches("123456", encode);
+>         System.out.println(matches);
+>     }
+> }
+> ```
+
 
 
 ### 1.2 配置数据库信息
